@@ -1,0 +1,14 @@
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\bin\Debug\net8.0\Projekt 1 - Vinterprojekt.exe
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\bin\Debug\net8.0\Projekt 1 - Vinterprojekt.deps.json
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\bin\Debug\net8.0\Projekt 1 - Vinterprojekt.runtimeconfig.json
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\bin\Debug\net8.0\Projekt 1 - Vinterprojekt.dll
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\bin\Debug\net8.0\Projekt 1 - Vinterprojekt.pdb
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.AssemblyInfoInputs.cache
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.AssemblyInfo.cs
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.csproj.CoreCompileInputs.cache
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.dll
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\refint\Projekt 1 - Vinterprojekt.dll
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.pdb
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\Projekt 1 - Vinterprojekt.genruntimeconfig.cache
+C:\Users\theodor.freed\Documents\Programmering\Projekt 1 - Vinterprojekt\Projekt 1 - Vinterprojekt\obj\Debug\net8.0\ref\Projekt 1 - Vinterprojekt.dll
