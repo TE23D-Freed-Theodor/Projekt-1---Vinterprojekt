@@ -33,28 +33,36 @@ static void hangman(string gissning, Random random, List<string> potentiella_ord
 {
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Black);
-    Raylib.EndDrawing();
 
     gissade_bokstäver.Clear(); // Tömmer listan som heter "gissade bokstäver"
     korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count())]; // Hittar det korrekta ordet genom att ta ett slumpmässigt tal från potentiella_ord
     List<string> korrekt_ord_array = korrekt_ord.Select(c => c.ToString()).ToList();
     
+    string ord_på_skärm = "";
 
     while (liv > 0)
     {
-        for (int x = 0; x < korrekt_ord.Length; x++)
-        {
-            if (gissade_bokstäver.Contains(korrekt_ord_array[x]))
-            {
-                Raylib.DrawText(korrekt_ord[x].ToString(), 200, 200, 20, Color.White);
+        foreach (char p in korrekt_ord) {
+            if (gissade_bokstäver.Contains(p.ToString())) {
+                ord_på_skärm += p;
             }
-            else
-            {
-                Raylib.DrawText("_", 200, 200, 20, Color.White);
+            else {
+                ord_på_skärm += "_";
             }
         }
 
-        Console.WriteLine("Vilken bokstav vill du gissa på?");
+        Raylib.DrawText(ord_på_skärm, 200, 200, 40, Color.White);
+
+        break;
+    }
+
+    Raylib.EndDrawing();
+}
+
+
+/*
+
+Console.WriteLine("Vilken bokstav vill du gissa på?");
         gissning = Console.ReadLine();
 
         while (gissade_bokstäver.Contains(gissning))
@@ -100,3 +108,5 @@ static void hangman(string gissning, Random random, List<string> potentiella_ord
 
     hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv);
 }
+
+*/
