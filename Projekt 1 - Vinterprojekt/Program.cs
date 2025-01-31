@@ -1,9 +1,17 @@
 ﻿using System;
+using Raylib_cs;
+
 
 Main();
 
 static void Main()
 {
+    Raylib.InitWindow(1600, 900, "test lol");
+    Raylib.SetTargetFPS(60);
+    Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.Black);
+    Raylib.EndDrawing();
+
     // Skapar variablerna som skickas till metoderna
     Random random = new Random();
     List<string> potentiella_ord = new List<string> { "ord", "ordigare", "ordigast" }; // Alla potentiella ord
@@ -15,11 +23,18 @@ static void Main()
     // Kör spelet
     Console.InputEncoding = System.Text.Encoding.Unicode;
     Console.OutputEncoding = System.Text.Encoding.Unicode;
-    hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv);
+
+    while (!Raylib.WindowShouldClose()) {hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv);}
+
+    Raylib.CloseWindow();
 }
 
 static void hangman(string gissning, Random random, List<string> potentiella_ord, List<string> gissade_bokstäver, string korrekt_ord, int liv)
 {
+    Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.Black);
+    Raylib.EndDrawing();
+
     gissade_bokstäver.Clear(); // Tömmer listan som heter "gissade bokstäver"
     korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count())]; // Hittar det korrekta ordet genom att ta ett slumpmässigt tal från potentiella_ord
     List<string> korrekt_ord_array = korrekt_ord.Select(c => c.ToString()).ToList();
@@ -31,11 +46,11 @@ static void hangman(string gissning, Random random, List<string> potentiella_ord
         {
             if (gissade_bokstäver.Contains(korrekt_ord_array[x]))
             {
-                Console.Write(korrekt_ord[x]);
+                Raylib.DrawText(korrekt_ord[x].ToString(), 200, 200, 20, Color.White);
             }
             else
             {
-                Console.Write("_");
+                Raylib.DrawText("_", 200, 200, 20, Color.White);
             }
         }
 
