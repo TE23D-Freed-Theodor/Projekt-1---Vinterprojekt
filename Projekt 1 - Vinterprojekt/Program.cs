@@ -75,5 +75,13 @@ static void hangman(string gissning, Random random, List<string> potentiella_ord
 
     }
 
+    if (liv == 0) {
+        gissade_bokstäver.Clear(); // Tömmer listan som heter "gissade bokstäver"
+        korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count())]; // Hittar det korrekta ordet genom att ta ett slumpmässigt tal från potentiella_ord
+        korrekt_ord_array = korrekt_ord.Select(c => c.ToString()).ToList();
+        liv = 5;
+        Console.WriteLine("NU kör vi om istället >:)");
+    }
+
     hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv);
 }
