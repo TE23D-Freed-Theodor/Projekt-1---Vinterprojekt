@@ -1,280 +1,195 @@
 ﻿using System;
 using Raylib_cs;
+using System.Collections.Generic;
+using System.Linq;
 
-Main(args);
-
-static void Main(string[] args)
+class Program
 {
-    int stage = 0; // Om spelaren når stage 11 så förlorar den
-
-    List<string> stages = ["", @"                                                                                    
-                                                    
-                       @@@@@@@@@@@@@@@              
-                @@@@@@@@@@@@@@@@@@@@@@@@            
-             @@@@@@@@@@  @       @@@@@@@@@          
-           @@@@@@ @    @@@ @ @ @@   @@@@@@@         
-         @@@@@@   @   @@ @  @@@    @   @@@@@        
-       @@@@@ @  @    @@  @@@@@ @ @ @  @@@@@@@       
-      @@@@   @ @ @@ @@  @ @@ @ @@ @@@ @ @@@@@@      
-     @@@@ @ @ @  @@ @  @ @@   @ @ @@ @@@ @@@@@@     
-    @@@@@    @@ @@@@@   @@   @ @ @@@ @   @@@@@@@    
-   @@@@    @ @ @@@    @@@@  @ @  @  @   @  @@@@@@   
-   @@@   @  @ @@@@ @ @@ @ @  @@  @   @   @@  @@@@   
-  @@@  @ @@@ @@@  @ @@      @@  @@@@@@ @@  @@@@@@   
-  @@@ @ @@@ @@@  @@  @    @@ @  @  @@@@   @  @@@    
- @@@  @         @         @          @       @@@    
- @@@                                         @@@    
-", @"                                                    
-                                                    
-                                                    
-              @@@@                                  
-              @@@@                                  
-              @@@@                                  
-              @@@                                   
-              @@@                                   
-              @@@                                   
-              @@@                                   
-              @@@                                   
-              @@@@                                  
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-              @@@                                   
-              @@@                                   
-             @@@@                                   
-             @@@@      @@@@@@@@@@@@@@@              
-             @@@@@@@@@@@@@@@@@@@@@@@@@@@            
-             @@@@@@@@@@  @       @@@@@@@@@          
-           @@@@@@ @    @@@ @ @ @@   @@@@@@@         
-         @@@@@@   @   @@ @  @@@ @  @   @@@@@        
-       @@@@@ @  @    @@  @@@@ @@ @ @  @@@@@@@       
-      @@@@   @ @ @@ @@  @    @ @@ @@@ @ @@@@@@      
-     @@@@ @ @ @  @@ @  @ @@   @ @ @@ @@@ @@@@@@     
-    @@@@@    @@ @@@@@   @@   @ @  @  @   @@@@@@@    
-   @@@@    @ @ @@@    @@ @  @ @  @  @   @  @@@@@@   
-   @@@   @  @ @@@@ @ @@ @ @  @@  @@  @   @@  @@@@   
-  @@@  @ @@@ @@@  @@@@      @@  @@@@@@ @@@ @@@@@@   
-  @@@ @ @@  @@@  @@  @    @@ @  @  @@@@   @  @@@    
- @@@  @         @         @          @       @@@    
- @@@                                         @@@    
-                                                    
-                                                    ", @"                                                    
-                                                    
-                           @@@                      
-              @@@@@@@@@@@@@@@@@@@@@@@@@@@           
-              @@@@@@@@@@@@@                         
-              @@@@     @@@                          
-              @@@     @@                            
-              @@@  @@@                              
-              @@@@@@                                
-              @@@@@                                 
-              @@@                                   
-              @@@@                                  
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-              @@@                                   
-              @@@                                   
-             @@@@                                   
-             @@@@      @@@@@@@@@@@@@@@              
-             @@@@@@@@@@@@@@@@@@@@@@@@@@@            
-             @@@@@@@@@@  @       @@@@@@@@@          
-           @@@@@@ @    @@@ @ @ @@   @@@@@@@         
-         @@@@@@   @   @@ @  @@@ @  @   @@@@@        
-       @@@@@ @  @    @@  @@@@ @@ @ @  @@@@@@@       
-      @@@@   @ @ @@ @@  @    @ @@ @@@ @ @@@@@@      
-     @@@@ @ @ @  @@ @  @ @@   @ @ @@ @@@ @@@@@@     
-    @@@@@    @@ @@@@@   @@   @ @  @  @   @@@@@@@    
-   @@@@    @ @ @@@    @@ @  @ @  @  @   @  @@@@@@   
-   @@@   @  @ @@@@ @ @@ @ @  @@  @@  @   @@  @@@@   
-  @@@  @ @@@ @@@  @@@@      @@  @@@@@@ @@@ @@@@@@   
-  @@@ @ @@  @@@  @@  @    @@ @  @  @@@@   @  @@@    
- @@@  @         @         @          @       @@@    
- @@@                                         @@@    
-                                                    
-                                                    ", @"                                                    
-                                                    
-                           @@@                      
-              @@@@@@@@@@@@@@@@@@@@@@@@@@@           
-              @@@@@@@@@@@@@          @@@@           
-              @@@@     @@@           @@@@           
-              @@@     @@             @@@@           
-              @@@  @@@               @@@@           
-              @@@@@@                 @@@@           
-              @@@@@                   @             
-              @@@                                   
-              @@@@                                  
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-             @@@@                                   
-              @@@                                   
-              @@@                                   
-             @@@@                                   
-             @@@@      @@@@@@@@@@@@@@@              
-             @@@@@@@@@@@@@@@@@@@@@@@@@@@            
-             @@@@@@@@@@  @       @@@@@@@@@          
-           @@@@@@ @    @@@ @ @ @@   @@@@@@@         
-         @@@@@@   @   @@ @  @@@ @  @   @@@@@        
-       @@@@@ @  @    @@  @@@@ @@ @ @  @@@@@@@       
-      @@@@   @ @ @@ @@  @    @ @@ @@@ @ @@@@@@      
-     @@@@ @ @ @  @@ @  @ @@   @ @ @@ @@@ @@@@@@     
-    @@@@@    @@ @@@@@   @@   @ @  @  @   @@@@@@@    
-   @@@@    @ @ @@@    @@ @  @ @  @  @   @  @@@@@@   
-   @@@   @  @ @@@@ @ @@ @ @  @@  @@  @   @@  @@@@   
-  @@@  @ @@@ @@@  @@@@      @@  @@@@@@ @@@ @@@@@@   
-  @@@ @ @@  @@@  @@  @    @@ @  @  @@@@   @  @@@    
- @@@  @         @         @          @       @@@    
- @@@                                         @@@    
-                                                    
-                                                    ", @"                                                    
-                                                    
-                           @@@                      
-              @@@@@@@@@@@@@@@@@@@@@@@@@@@           
-              @@@@@@@@@@@@@          @@@@           
-              @@@@     @@@           @@@@           
-              @@@     @@             @@@@           
-              @@@  @@@               @@@@           
-              @@@@@@                 @@@@           
-              @@@@@                @@ @  @          
-              @@@                @         @        
-              @@@@               @    @ @ @@        
-             @@@@                  @@@@@@@          
-             @@@@                @@@  @ @@          
-             @@@@                     @     @@      
-             @@@@                    @@             
-              @@@                 @@    @@          
-              @@@                         @         
-             @@@@                                   
-             @@@@      @@@@@@@@@@@@@@@              
-             @@@@@@@@@@@@@@@@@@@@@@@@@@@            
-             @@@@@@@@@@  @       @@@@@@@@@          
-           @@@@@@ @    @@@ @ @ @@   @@@@@@@         
-         @@@@@@   @   @@ @  @@@ @  @   @@@@@        
-       @@@@@ @  @    @@  @@@@ @@ @ @  @@@@@@@       
-      @@@@   @ @ @@ @@  @    @ @@ @@@ @ @@@@@@      
-     @@@@ @ @ @  @@ @  @ @    @ @ @@ @@@ @@@@@@     
-    @@@@@    @@ @@@@@   @@   @ @  @  @   @@@@@@@    
-   @@@@    @ @ @@@    @@ @@@@@@  @  @   @  @@@@@@   
-   @@@   @  @ @@@@ @ @@ @ @@@@@  @@  @   @@  @@@@   
-  @@@  @ @@@ @@@  @@@@      @@  @@@@@@ @@@ @@@@@@   
-  @@@ @ @@  @@@  @@  @    @@ @  @  @@@@   @  @@@    
- @@@  @         @         @          @       @@@    
- @@@                                         @@@    
-                                                    
-                                                    "];
-
-
-    Raylib.InitWindow(1600, 900, "test lol");
-    Raylib.SetTargetFPS(60);
-
-    // Skapar variablerna som skickas till metoderna
-    Random random = new Random();
-    List<string> potentiella_ord = new List<string> { "orfdjifhdjsohfiodfoisfd", "ordigarfdsnufhdshfdsofdosjifsdfe", "ordigastjfdioshfoidsjhfoisdjfoisdjofjdsoijfidsjsf" }; // Alla potentiella ord
-    List<string> gissade_bokstäver = new List<string>(); // Alla bokstäver som spelaren har gissat
-    int liv = 5; // mängden liv som spelaren har (5 från början)
-    string korrekt_ord = "";
-    string gissning = "";
-
-    // Kör spelet
-    Console.InputEncoding = System.Text.Encoding.Unicode;
-    Console.OutputEncoding = System.Text.Encoding.Unicode;
-
-    gissade_bokstäver.Clear(); // Tömmer listan som heter "gissade bokstäver"
-    korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count())]; // Hittar det korrekta ordet genom att ta ett slumpmässigt tal från potentiella_ord
-    List<string> korrekt_ord_array = korrekt_ord.Select(c => c.ToString()).ToList();
-
-    while (!Raylib.WindowShouldClose()) {hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv, stage, stages);}
-
-    Raylib.CloseWindow();
-}
-
-static void hangman(string gissning, Random random, List<string> potentiella_ord, List<string> gissade_bokstäver, string korrekt_ord, int liv, int stage, List<string> stages)
-{
-    Raylib.BeginDrawing();
-    Raylib.ClearBackground(Color.Black);
-    
-    string ord_på_skärm = "";
-
-    while (liv > 0)
+    static void Main()
     {
-        foreach (char p in korrekt_ord) {
-            if (gissade_bokstäver.Contains(p.ToString())) {
-                ord_på_skärm += p;
+        // skapar fönster
+        Raylib.InitWindow(1600, 900, "Hangman");
+        Raylib.SetTargetFPS(60);
+
+        // Alla stages (steg i hänga gubbe)
+        List<string> stages = new List<string>
+        {
+            @"+---+
+  |   |
+      |
+      |
+      |
+      |
+=========", @"+---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========", @"+---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========", @"+---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========", @"+---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========", @"+---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+========="
+        };
+
+        // Lista med potentiella ord
+        List<string> potentiella_ord = new List<string> { "sverige", "norge", "finland", "danmark" };
+        Random random = new Random();
+
+        // Spelvariabler
+        string korrekt_ord = "";
+        List<string> gissade_bokstäver = new List<string>();
+        int liv = 5;
+        int stage = 0;
+        bool gameOver = false;
+        bool gameWin = false;
+        int redanGissadTimer = 0;
+
+        // function för att starta ett nytt spel
+        void NewGame()
+        {
+            liv = 5;
+            stage = 0;
+            gissade_bokstäver.Clear();
+            korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count)];
+            gameOver = false;
+            gameWin = false;
+        }
+        NewGame();
+
+        // den här loopen får spelet att köras om och om
+        while (!Raylib.WindowShouldClose())
+        {
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.Black);
+
+            if (!gameOver)
+            {
+                // Rita ut ordet med rätt gissade bokstäver (inga mellanslag mellan tecknen)
+                string ord_på_skärm = "";
+                foreach (char c in korrekt_ord)
+                {
+                    if (gissade_bokstäver.Contains(c.ToString()))
+                        ord_på_skärm += c;
+                    else
+                        ord_på_skärm += "_";
+                }
+                int ordBredd = Raylib.MeasureText(ord_på_skärm, 40);
+                Raylib.DrawText(ord_på_skärm, (Raylib.GetScreenWidth() - ordBredd) / 2, 200, 40, Color.White);
+
+                // Instruktionstext
+                string instruktion = "Tryck på en bokstav mellan A-Ö för att gissa";
+                int instBredd = Raylib.MeasureText(instruktion, 40);
+                Raylib.DrawText(instruktion, (Raylib.GetScreenWidth() - instBredd) / 2, 300, 40, Color.White);
+
+                // Visa antalet kvarvarande liv
+                string livesText = "Liv kvar: " + liv;
+                Raylib.DrawText(livesText, 50, 50, 30, Color.White);
+
+                // Rita hänga gubbe-steget (ascii-art)
+                // Tidigare y-värde var 670, nu är det 550 (för att placera den längre upp)
+                if (stage < stages.Count)
+                {
+                    int stageBredd = Raylib.MeasureText(stages[stage], 1);
+                    Raylib.DrawText(stages[stage], (Raylib.GetScreenWidth() - stageBredd) / 2, 550, 20, Color.White);
+                }
+
+                // Meddelande om redan gissat bokstav
+                if (redanGissadTimer > 0)
+                {
+                    Raylib.DrawText("Redan gissat!", 650, 120, 40, Color.White);
+                    redanGissadTimer--;
+                }
+
+                // Hantera tangenttryckning
+                int knapp = Raylib.GetKeyPressed();
+                if (knapp != 0 && redanGissadTimer <= 0)
+                {
+                    char bokstav = char.ToLower((char)knapp);
+                    if (char.IsLetter(bokstav))
+                    {
+                        string bokstav_sträng = bokstav.ToString();
+                        if (gissade_bokstäver.Contains(bokstav_sträng))
+                        {
+                            redanGissadTimer = 60;
+                        }
+                        else
+                        {
+                            gissade_bokstäver.Add(bokstav_sträng);
+                            // Om bokstaven inte finns i ordet: dra ett liv och gå till nästa steg
+                            if (!korrekt_ord.Contains(bokstav_sträng))
+                            {
+                                liv--;
+                                stage++;
+                            }
+                        }
+                    }
+                }
+
+                // Kontrollera om spelaren har gissat alla bokstäver
+                bool allaGissade = true;
+                foreach (char c in korrekt_ord)
+                {
+                    if (!gissade_bokstäver.Contains(c.ToString()))
+                    {
+                        allaGissade = false;
+                        break;
+                    }
+                }
+                if (allaGissade)
+                {
+                    gameWin = true;
+                    gameOver = true;
+                }
+
+                // Kontrollera om spelaren har förlorat
+                if (liv <= 0 || stage >= stages.Count)
+                {
+                    gameOver = true;
+                }
             }
-            else {
-                ord_på_skärm += "_";
+            else
+            {
+                // Spelöver-meddelande (ingen gul text, nu vit)
+                string message = gameWin ? "Grattis, du vann!" : "Du förlorade!";
+                int messageWidth = Raylib.MeasureText(message, 60);
+                Raylib.DrawText(message, (Raylib.GetScreenWidth() - messageWidth) / 2, 300, 60, Color.White);
+
+                string replay = "Tryck på Enter för att spela igen";
+                int replayWidth = Raylib.MeasureText(replay, 30);
+                Raylib.DrawText(replay, (Raylib.GetScreenWidth() - replayWidth) / 2, 400, 30, Color.White);
+
+                // Om spelaren trycker Enter startas ett nytt spel
+                if (Raylib.IsKeyPressed(KeyboardKey.Enter))
+                {
+                    NewGame();
+                }
             }
+
+            Raylib.EndDrawing();
         }
 
-        int ord_på_skärm_bredd = Raylib.MeasureText(ord_på_skärm, 40);
-
-        string instruktion = "Tryck på en bokstav mellan A-Z för att gissa";
-        int instruktion_bredd = Raylib.MeasureText(instruktion, 40);
-
-        int stage_bredd = Raylib.MeasureText(stages[stage], 1);
-
-        int centerX = (Raylib.GetScreenWidth() - ord_på_skärm_bredd)/2;
-        Raylib.DrawText(ord_på_skärm, centerX, 200, 40, Color.White); // Skriver ut ordet fast om en bokstav finns med i gissade_bokstäver men inte är korrekt så skrivs fortfarande ett "_"
-        Raylib.DrawText(instruktion, (Raylib.GetScreenWidth() - instruktion_bredd) / 2, 300, 40, Color.White); 
-        Raylib.DrawText(stages[stage], (Raylib.GetScreenWidth() - stage_bredd) / 2, 670, 1, Color.White);
-
-        break;
+        Raylib.CloseWindow();
     }
-
-    Raylib.EndDrawing();
 }
-
-
-/*
-
-Console.WriteLine("Vilken bokstav vill du gissa på?");
-        gissning = Console.ReadLine();
-
-        while (gissade_bokstäver.Contains(gissning))
-        {
-            Console.WriteLine("Den där bokstaven finns redan!");
-            gissning = Console.ReadLine();
-        }
-
-        while (string.IsNullOrEmpty(gissning) || gissning.Length != 1 || !char.IsLetter(gissning[0]))
-        {
-            Console.WriteLine("DUM! Ange endast en bokstav (a-ö) din lilla fuskis:");
-            gissning = Console.ReadLine();
-        }
-
-        if (korrekt_ord_array.Contains(gissning))
-        {
-            Console.WriteLine("KORREKT! Duktig!");
-            gissade_bokstäver.Add(gissning);
-        }
-        else
-        {
-            liv -= 1;
-            Console.WriteLine("INKORREKT! SÄMST!");
-            Console.WriteLine($"Nu har du {liv} liv kvar! Dum åsna!");
-            gissade_bokstäver.Add(gissning);
-        }
-
-        if (korrekt_ord_array.All(bokstav => gissade_bokstäver.Contains(bokstav)))
-        {
-            Console.WriteLine("Grattis! Du har gissat alla bokstäver nu!");
-            break;
-        }
-
-    }
-
-    if (liv == 0) {
-        gissade_bokstäver.Clear(); // Tömmer listan som heter "gissade bokstäver"
-        korrekt_ord = potentiella_ord[random.Next(potentiella_ord.Count())]; // Hittar det korrekta ordet genom att ta ett slumpmässigt tal från potentiella_ord
-        korrekt_ord_array = korrekt_ord.Select(c => c.ToString()).ToList();
-        liv = 5;
-        Console.WriteLine("NU kör vi om istället >:)");
-    }
-
-    hangman(gissning, random, potentiella_ord, gissade_bokstäver, korrekt_ord, liv);
-}
-
-*/
