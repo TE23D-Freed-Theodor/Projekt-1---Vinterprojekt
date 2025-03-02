@@ -1,7 +1,23 @@
 ﻿using System;
 using Raylib_cs;
 using System.Collections.Generic;
-using System.Linq;
+// Använde System.Linq innan men den behövdes inte
+
+/*
+
+----------------------------------------------
+
+    Hänga Gubbe - Theodor Freed TE23D
+    I det här spelet så använder man
+    tangentbordet för att gissa vilket
+    land som är korrekt, till exempel 
+    sverige, norge etc (som i hänga gubbe).
+    när spelaren har förlorat så trycker 
+    den på enter för att köra igen
+
+----------------------------------------------
+
+*/
 
 class Program
 {
@@ -86,7 +102,7 @@ class Program
 
             if (!gameOver)
             {
-                // Rita ut ordet med rätt gissade bokstäver (inga mellanslag mellan tecknen)
+                // Rita ut ordet med rätt gissade bokstäver 
                 string ord_på_skärm = "";
                 foreach (char c in korrekt_ord)
                 {
@@ -108,7 +124,6 @@ class Program
                 Raylib.DrawText(livesText, 50, 50, 30, Color.White);
 
                 // Rita hänga gubbe-steget (ascii-art)
-                // Tidigare y-värde var 670, nu är det 550 (för att placera den längre upp)
                 if (stage < stages.Count)
                 {
                     int stageBredd = Raylib.MeasureText(stages[stage], 1);
@@ -122,9 +137,9 @@ class Program
                     redanGissadTimer--;
                 }
 
-                // Hantera tangenttryckning
+                // Den här delen kontrollerar om knapp har tryckts
                 int knapp = Raylib.GetKeyPressed();
-                if (knapp != 0 && redanGissadTimer <= 0)
+                if (knapp != 0 && redanGissadTimer <= 0) //  
                 {
                     char bokstav = char.ToLower((char)knapp);
                     if (char.IsLetter(bokstav))
@@ -137,7 +152,7 @@ class Program
                         else
                         {
                             gissade_bokstäver.Add(bokstav_sträng);
-                            // Om bokstaven inte finns i ordet: dra ett liv och gå till nästa steg
+                            // Om bokstaven inte finns i ordet så förslorar spelaren ett liv
                             if (!korrekt_ord.Contains(bokstav_sträng))
                             {
                                 liv--;
@@ -149,7 +164,7 @@ class Program
 
                 // Kontrollera om spelaren har gissat alla bokstäver
                 bool allaGissade = true;
-                foreach (char c in korrekt_ord)
+                foreach (char c in korrekt_ord) 
                 {
                     if (!gissade_bokstäver.Contains(c.ToString()))
                     {
@@ -164,14 +179,14 @@ class Program
                 }
 
                 // Kontrollera om spelaren har förlorat
-                if (liv <= 0 || stage >= stages.Count)
+                if (liv <= 0) // alltså om spelaren har förlorat alla liv 
                 {
                     gameOver = true;
                 }
             }
             else
             {
-                // Spelöver-meddelande (ingen gul text, nu vit)
+             
                 string message = gameWin ? "Grattis, du vann!" : "Du förlorade!";
                 int messageWidth = Raylib.MeasureText(message, 60);
                 Raylib.DrawText(message, (Raylib.GetScreenWidth() - messageWidth) / 2, 300, 60, Color.White);
